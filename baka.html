@@ -60,12 +60,126 @@
         .vertical-menu li:hover ul {
             display: block;
         }
+
+        .hidden-content {
+            display: none; /* 默认隐藏内容 */
+        }
+
+        .form-container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+
+        .form-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .form-container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #7db3fa;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #7db3fa;
+        }
+
+        .error-message {
+            color: red;
+            display: none; /* 默认隐藏错误消息 */
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%; /* 设置固定高度 */
+            object-fit: cover; /* 保持图片的宽高比并裁剪 */
+            display: none; /* 默认隐藏所有图片 */
+        }
+
+        .carousel img.active {
+            display: block; /* 显示当前活动图片 */
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+        }
+
+        .carousel-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-controls button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+        }
+
+        .carousel-dots button {
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-dots button.active {
+            background-color: white;
+        }
+
+        /* 长型轮播框样式 */
+        .carousel-wide {
+            max-width: 600px; /* 设置长型轮播框的最大宽度 */
+            height: 400px; /* 设置长型轮播框的高度 */
+        }
+
+        /* 高型轮播框样式 */
+        .carousel-high {
+            max-width: 400px; /* 设置宽型轮播框的最大宽度 */
+            height: 600px; /* 设置宽型轮播框的高度 */
+        }
     </style>
 </head>
 <body>
-    <div style="position: relative; width: 100%; ;">
+    <div style="position: relative; width: 100%;">
         <ul class="vertical-menu">
-            
             <li>
                 <a href="#" class="dropdown-toggle">MENU~~</a>
                 <ul class="dropdown-menu">
@@ -75,10 +189,7 @@
                     <li><a href="https://narakuu0.github.io/personal-website/baka">神秘小世界</a></li>
                 </ul>
             </li>
-            
         </ul>
-        
-        
     </div>
 
     <script>
@@ -105,7 +216,6 @@
             }
         });
     </script>
-    
 
     <!-- 头部 -->
     <div style="
@@ -113,28 +223,247 @@
      padding: 10px;
      height: 80px;
      text-align: center;
-     
      ">
-     <img src="https://i.imgs.ovh/2025/05/01/rbmsh.jpeg" alt="咱的头像" style="width: 80px; height: 80px; border-radius: 50%;">
+        <img src="https://i.imgs.ovh/2025/05/01/rbmsh.jpeg" alt="咱的头像" style="width: 80px; height: 80px; border-radius: 50%;">
     </div>
-    
+
     <!-- 以下是每个页面的独特内容 -->
     <div style="
     background-color: #ffffff;
-    
     font-size: 16px;
     max-width: 760px;
     padding: 15px;
     margin: 30px auto;
     line-height: 1.7;
-
     ">
-        
-    
-        <input type="text" placeholder="密码是什么？">
 
+        <div class="form-container">
+            <label for="password">密码是什么？</label>
+            <input type="password" id="password" name="password">
+            <input type="submit" value="试一试！" id="submitBtn">
+            <div class="error-message" id="errorMessage">错咯！（吐舌）</div>
+        </div>
+
+        <div class="hidden-content" id="hiddenContent">
+            <h1>嘿嘿（/// ∇ ///)</h1>
+            <p></p>
+
+            <!-- 第一个轮播框 宽-->
+            
+            <div class="carousel carousel-wide" id="carousel1">
+                <img src="https://i.imgs.ovh/2025/05/01/rkbLn.jpeg" alt="图片1" class="active">
+                <img src="https://i.imgs.ovh/2025/05/01/rkUw1.jpeg" alt="图片2">
+                <img src="https://i.imgs.ovh/2025/05/01/rkTJb.jpeg" alt="图片3">
+                <img src="https://i.imgs.ovh/2025/05/01/rkLAY.jpeg" alt="图片4">
+                <div class="carousel-controls">
+                    <button onclick="prevImage('carousel1')">‹</button>
+                    <button onclick="nextImage('carousel1')">›</button>
+                </div>
+
+                <div class="carousel-dots">
+                    <button onclick="showImage('carousel1', 0)" class="active"></button>
+                    <button onclick="showImage('carousel1', 1)"></button>
+                    <button onclick="showImage('carousel1', 2)"></button>
+                    <button onclick="showImage('carousel1', 3)"></button>
+                </div>
+            </div>
+
+            <!-- 第二个轮播框 高-->
+            <div class="carousel carousel-high" id="carousel2">
+                <img src="https://i.imgs.ovh/2025/05/01/rkAGx.webp" alt="图片1" class="active">
+                <img src="https://i.imgs.ovh/2025/05/01/rkzPL.webp" alt="图片2">
+                <img src="https://i.imgs.ovh/2025/05/01/rRcUc.webp" alt="图片3">
+
+                <div class="carousel-controls">
+                    <button onclick="prevImage('carousel2')">‹</button>
+                    <button onclick="nextImage('carousel2')">›</button>
+                </div>
+
+                <div class="carousel-dots">
+                    <button onclick="showImage('carousel2', 0)" class="active"></button>
+                    <button onclick="showImage('carousel2', 1)"></button>
+                    <button onclick="showImage('carousel2', 2)"></button>
+                </div>
+            </div>
+
+            <!-- 第三个轮播框 高-->
+            <div class="carousel carousel-high" id="carousel3">
+                <img src="https://i.imgs.ovh/2025/05/01/rRru6.webp" alt="图片1" class="active">
+                <img src="https://i.imgs.ovh/2025/05/01/rRFrO.webp" alt="图片2">
+                <img src="https://i.imgs.ovh/2025/05/01/rk2tU.webp" alt="图片3">
+                <img src="https://i.imgs.ovh/2025/05/01/rkWcN.webp" alt="图片4">
+                <img src="https://i.imgs.ovh/2025/05/01/rkMP4.webp" alt="图片5">
+                <img src="https://i.imgs.ovh/2025/05/01/rkDTC.webp" alt="图片6">
+                <div class="carousel-controls">
+                    <button onclick="prevImage('carousel3')">‹</button>
+                    <button onclick="nextImage('carousel3')">›</button>
+                </div>
+
+                <div class="carousel-dots">
+                    <button onclick="showImage('carousel3', 0)" class="active"></button>
+                    <button onclick="showImage('carousel3', 1)"></button>
+                    <button onclick="showImage('carousel3', 2)"></button>
+                    <button onclick="showImage('carousel3', 3)"></button>
+                    <button onclick="showImage('carousel3', 4)"></button>
+                    <button onclick="showImage('carousel3', 5)"></button>
+                </div>
+            </div>
+
+            <!-- 第四个轮播框 宽-->
+            <div class="carousel carousel-wide" id="carousel4">
+                <img src="https://i.imgs.ovh/2025/05/01/rkYRQ.webp" alt="图片1" class="active">
+                <img src="https://i.imgs.ovh/2025/05/01/rkJCX.webp" alt="图片2">
+                <img src="https://i.imgs.ovh/2025/05/01/rkn8H.webp" alt="图片3">
+                <img src="https://i.imgs.ovh/2025/05/01/rkPmA.webp" alt="图片4">
+                <img src="https://i.imgs.ovh/2025/05/01/rks1q.webp" alt="图片5">
+                <img src="https://i.imgs.ovh/2025/05/01/rkeJt.webp" alt="图片6">
+                <div class="carousel-controls">
+                    <button onclick="prevImage('carousel4')">‹</button>
+                    <button onclick="nextImage('carousel4')">›</button>
+                </div>
+
+                <div class="carousel-dots">
+                    <button onclick="showImage('carousel4', 0)" class="active"></button>
+                    <button onclick="showImage('carousel4', 1)"></button>
+                    <button onclick="showImage('carousel4', 2)"></button>
+                    <button onclick="showImage('carousel4', 3)"></button>
+                    <button onclick="showImage('carousel4', 4)"></button>
+                    <button onclick="showImage('carousel4', 5)"></button>
+                </div>
+            </div>
+
+            <!-- 第五个轮播框 宽-->
+            <div class="carousel carousel-wide" id="carousel5">
+                <img src="https://i.imgs.ovh/2025/05/01/rk6Ce.webp" alt="图片1" class="active">
+                <img src="https://i.imgs.ovh/2025/05/01/rkgcM.webp" alt="图片2">
+                <img src="https://i.imgs.ovh/2025/05/01/rRfQp.webp" alt="图片3">
+                <img src="https://i.imgs.ovh/2025/05/01/rRa39.webp" alt="图片4">
+                <img src="" alt="图片5">
+                <img src="" alt="图片6">
+                <div class="carousel-controls">
+                    <button onclick="prevImage('carousel5')">‹</button>
+                    <button onclick="nextImage('carousel5')">›</button>
+                </div>
+
+                <div class="carousel-dots">
+                    <button onclick="showImage('carousel5', 0)" class="active"></button>
+                    <button onclick="showImage('carousel5', 1)"></button>
+                    <button onclick="showImage('carousel5', 2)"></button>
+                    <button onclick="showImage('carousel5', 3)"></button>
+                    <button onclick="showImage('carousel5', 4)"></button>
+                    <button onclick="showImage('carousel5', 5)"></button>
+                </div>
+            </div>
+
+
+            <p><strong>kkshark倾情提供~~</strong></p>
+            <!-- 第六个轮播框 宽-->
+            
+            <div class="carousel carousel-wide" id="carousel6">
+                <img src="https://i.imgs.ovh/2025/05/01/rkug0.jpeg" alt="图片1" class="active">
+                <img src="https://i.imgs.ovh/2025/05/01/rkmyg.jpeg" alt="图片2">
+                <img src="https://i.imgs.ovh/2025/05/01/rkhtd.jpeg" alt="图片3">
+                <img src="https://i.imgs.ovh/2025/05/01/rktmp.jpeg" alt="图片4">
+                <div class="carousel-controls">
+                    <button onclick="prevImage('carousel6')">‹</button>
+                    <button onclick="nextImage('carousel6')">›</button>
+                </div>
+
+                <div class="carousel-dots">
+                    <button onclick="showImage('carousel6', 0)" class="active"></button>
+                    <button onclick="showImage('carousel6', 1)"></button>
+                    <button onclick="showImage('carousel6', 2)"></button>
+                    <button onclick="showImage('carousel6', 3)"></button>
+                </div>
+            </div>
+
+            <!-- 第七个轮播框 高-->
+            <div class="carousel carousel-high" id="carousel7">
+                <img src="https://i.imgs.ovh/2025/05/01/rkxYY.jpeg" alt="图片1" class="active">
+                <img src="https://i.imgs.ovh/2025/05/01/rkpf6.jpeg" alt="图片2">
+                <img src="https://i.imgs.ovh/2025/05/01/rklQc.jpeg" alt="图片3">
+
+                <div class="carousel-controls">
+                    <button onclick="prevImage('carousel7')">‹</button>
+                    <button onclick="nextImage('carousel7')">›</button>
+                </div>
+
+                <div class="carousel-dots">
+                    <button onclick="showImage('carousel7', 0)" class="active"></button>
+                    <button onclick="showImage('carousel7', 1)"></button>
+                    <button onclick="showImage('carousel7', 2)"></button>
+                </div>
+            </div>
+            <script>
+                function showImage(carouselId, index) {
+                    const images = document.querySelectorAll(`#${carouselId} img`);
+                    const dots = document.querySelectorAll(`#${carouselId} .carousel-dots button`);
+
+                    images.forEach((img, i) => {
+                        img.classList.remove('active');
+                        if (i === index) {
+                            img.classList.add('active');
+                        }
+                    });
+
+                    dots.forEach((dot, i) => {
+                        dot.classList.remove('active');
+                        if (i === index) {
+                            dot.classList.add('active');
+                        }
+                    });
+                }
+
+                function nextImage(carouselId) {
+                    const images = document.querySelectorAll(`#${carouselId} img`);
+                    let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
+                    currentIndex = (currentIndex + 1) % images.length;
+                    showImage(carouselId, currentIndex);
+                }
+
+                function prevImage(carouselId) {
+                    const images = document.querySelectorAll(`#${carouselId} img`);
+                    let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    showImage(carouselId, currentIndex);
+                }
+
+                // 自动轮播
+                setInterval(() => nextImage('carousel1'), 3000); // 每3秒切换一次图片
+                setInterval(() => nextImage('carousel2'), 3000); // 每3秒切换一次图片
+                setInterval(() => nextImage('carousel3'), 3000);
+                setInterval(() => nextImage('carousel4'), 3000); // 每3秒切换一次图片
+                setInterval(() => nextImage('carousel5'), 3000); // 每3秒切换一次图片
+                setInterval(() => nextImage('carousel6'), 3000);
+                setInterval(() => nextImage('carousel7'), 3000); // 每3秒切换一次图片
+                setInterval(() => nextImage('carousel8'), 3000); // 每3秒切换一次图片
+                setInterval(() => nextImage('carousel9'), 3000); // 每3秒切换一次图片
+            </script>
+
+        </div>
+
+        <script>
+            document.getElementById('submitBtn').addEventListener('click', function(event) {
+                event.preventDefault(); // 阻止表单默认提交行为
+
+                const passwordInput = document.getElementById('password');
+                const password = passwordInput.value.trim();
+                const hiddenContent = document.getElementById('hiddenContent');
+                const errorMessage = document.getElementById('errorMessage');
+
+                // 设置正确的密码
+                const correctPassword = "0704";
+
+                if (password === correctPassword) {
+                    hiddenContent.style.display = 'block'; // 显示隐藏内容
+                    errorMessage.style.display = 'none'; // 隐藏错误消息
+                } else {
+                    hiddenContent.style.display = 'none'; // 隐藏隐藏内容
+                    errorMessage.style.display = 'block'; // 显示错误消息
+                }
+            });
+        </script>
     </div>
-    
 
     <!-- 页脚 -->
     <div style="
@@ -143,16 +472,10 @@
     height: 80px;
     text-align: center;
     font-size: 12px;
-    
     ">
         <p>© 2025 Narakuu小站</p>
         <p>Powered by Naraku</p>
         <a> 广告位招租</a>
     </div>
-
-
-
-
- 
 </body>
 </html>
