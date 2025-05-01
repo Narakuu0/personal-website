@@ -175,6 +175,36 @@
             max-width: 400px; /* 设置宽型轮播框的最大宽度 */
             height: 600px; /* 设置宽型轮播框的高度 */
         }
+
+         /* 响应式设计 */
+         @media (max-width: 600px) {
+            .carousel img {
+                object-fit: contain; /* 保持图片的宽高比并完整显示 */
+            }
+
+            .carousel-controls {
+                bottom: 5px;
+            }
+
+            .carousel-dots {
+                bottom: 5px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .carousel-long, .carousel-wide {
+                height: 200px; /* 适应更小的屏幕 */
+            }
+
+            .carousel-controls button {
+                padding: 3px 6px;
+            }
+
+            .carousel-dots button {
+                width: 8px;
+                height: 8px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -440,7 +470,38 @@
                 setInterval(() => nextImage('carousel9'), 3000); // 每3秒切换一次图片
             </script>
 
+            <!--触摸滑动功能-->
+            <script>
+                document.querySelectorAll('.carousel').forEach(carousel => {
+                    let startX, startY, moveX, moveY, deltaX, deltaY;
+
+                    carousel.addEventListener('touchstart', function(event) {
+                        startX = event.touches[0].clientX;
+                        startY = event.touches[0].clientY;
+                    });
+
+                    carousel.addEventListener('touchmove', function(event) {
+                        moveX = event.touches[0].clientX;
+                        moveY = event.touches[0].clientY;
+                        deltaX = moveX - startX;
+                        deltaY = moveY - startY;
+                    });
+
+                    carousel.addEventListener('touchend', function(event) {
+                        if (Math.abs(deltaX) > Math.abs(deltaY)) { // 水平滑动
+                            if (deltaX > 0) { // 向右滑动
+                                prevImage(carousel.id);
+                            } else { // 向左滑动
+                                nextImage(carousel.id);
+                            }
+                        }
+                    });
+                });
+            </script>
         </div>
+
+
+        
 
         <script>
             document.getElementById('submitBtn').addEventListener('click', function(event) {
