@@ -60,6 +60,42 @@
         .vertical-menu li:hover ul {
             display: block;
         }
+
+        .hidden-content {
+            display: none; /* 默认隐藏内容 */
+        }
+
+        .form-container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+
+        .form-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .form-container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #7db3fa;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #7db3fa;
+        }
+
+        .error-message {
+            color: red;
+            display: none; /* 默认隐藏错误消息 */
+        }
     </style>
 </head>
 <body>
@@ -136,13 +172,48 @@
         <p></p>
         <p><strong>咱的邮箱:</strong>   narakuu0@outlook.com</p>
         <p><strong>咱的微信:</strong>   narakuu0</p>
-        <p><strong>咱的QQ  :</strong>   3771527877</p>
-        <p><strong>咱的电话:</strong>   185****0531</p>
-        <p></p>
-        <p></p>
+        <p><strong>咱的QQ  :</strong>   2110345484</p>
+        <p><strong></strong>   </p>
+        <p><strong>steam好友码:</strong>   1107647184</p>
+        <p><strong></strong>   </p>
         <p></p>
         <p></p>
         
+        <div class="form-container">
+            <label for="password">其他联系方式</label>
+            <input type="password" id="password" name="password">
+            <input type="submit" value="输入访问密钥" id="submitBtn">
+            <div class="error-message" id="errorMessage">错误</div>
+        </div>
+
+        <script>
+            document.getElementById('submitBtn').addEventListener('click', function(event) {
+                event.preventDefault(); // 阻止表单默认提交行为
+
+                const passwordInput = document.getElementById('password');
+                const password = passwordInput.value.trim();
+                const hiddenContent = document.getElementById('hiddenContent');
+                const errorMessage = document.getElementById('errorMessage');
+
+                // 设置正确的密码
+                const correctPassword = "0316";
+
+                if (password === correctPassword) {
+                    hiddenContent.style.display = 'block'; // 显示隐藏内容
+                    errorMessage.style.display = 'none'; // 隐藏错误消息
+                } else {
+                    hiddenContent.style.display = 'none'; // 隐藏隐藏内容
+                    errorMessage.style.display = 'block'; // 显示错误消息
+                }
+            });
+        </script>
+
+        <div class="hidden-content" id="hiddenContent">
+            <h1></h1>
+            <p><strong>QQ小号:</strong>  3771517877</p>
+            <p><strong></strong></p>
+            <p><strong>咱的电话:</strong>   18561360531</p>
+
 
     </div>
     
