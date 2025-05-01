@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narakuu小站</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .vertical-menu {
+            width: 200px;
+            background-color: #f1f1f1;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            position: relative; /* 确保子菜单相对于父菜单定位 */
+        }
+
+        .vertical-menu > li > a {
+            background-color: #7db3fa;
+            color: white;
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+            text-align: left;
+        }
+
+        .vertical-menu > li > a:hover {
+            background-color: #7db3fa;
+        }
+
+        .vertical-menu li ul {
+            display: none; /* 默认隐藏子菜单 */
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            position: absolute; /* 使用绝对定位 */
+            width: 200px;
+            background-color: #f1f1f1;
+            left: 0; /* 子菜单与父菜单对齐 */
+            z-index: 1; /* 确保子菜单在其他内容之上 */
+        }
+
+        .vertical-menu li ul li a {
+            background-color: #f1f1f1;
+            color: black;
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+            text-align: left;
+        }
+
+        .vertical-menu li ul li a:hover {
+            background-color: #ddd;
+        }
+
+        /* 使用JavaScript控制点击事件 */
+        .vertical-menu li:hover ul {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div style="position: relative; width: 100%; ;">
+        <ul class="vertical-menu">
+            
+            <li>
+                <a href="#" class="dropdown-toggle">MENU~~</a>
+                <ul class="dropdown-menu">
+                    <li><a href="https://narakuu0.github.io/personal-website/">回到主页</a></li>
+                    <li><a href="https://narakuu0.github.io/personal-website/self-info">自我介绍</a></li>
+                    <li><a href="https://narakuu0.github.io/personal-website/contact">联系方式</a></li>
+                    <li><a href="https://narakuu0.github.io/personal-website/baka">神秘小世界</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+        
+        
+    </div>
+
+    <script>
+        document.querySelectorAll('.dropdown-toggle').forEach(item => {
+            item.addEventListener('click', event => {
+                event.preventDefault();
+                const dropdownMenu = item.nextElementSibling;
+                if (dropdownMenu.style.display === 'block') {
+                    dropdownMenu.style.display = 'none';
+                } else {
+                    dropdownMenu.style.display = 'block';
+                }
+            });
+        });
+
+        // 点击菜单外区域时隐藏子菜单
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('.dropdown-toggle')) {
+                document.querySelectorAll('.dropdown-menu').forEach(item => {
+                    if (item.style.display === 'block') {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+    
+
+    <!-- 头部 -->
+    <div style="
+     background-color: #f1f1f1;
+     padding: 10px;
+     height: 80px;
+     text-align: center;
+     
+     ">
+     <img src="https://i.imgs.ovh/2025/05/01/rbmsh.jpeg" alt="咱的头像" style="width: 80px; height: 80px; border-radius: 50%;">
+    </div>
+    
+    <!-- 以下是每个页面的独特内容 -->
+    <div style="
+    background-color: #ffffff;
+    
+    font-size: 16px;
+    max-width: 760px;
+    padding: 15px;
+    margin: 30px auto;
+    line-height: 1.7;
+
+    ">
+        <h2 style="
+        color:#7db3fa;
+        
+        ">联系方式</h2>
+        <p></p>
+        <p><strong>咱的邮箱:</strong>   narakuu0@outlook.com</p>
+        <p><strong>咱的微信:</strong>   narakuu0</p>
+        <p><strong>咱的QQ  :</strong>   3771527877</p>
+        <p><strong>咱的电话:</strong>   185****0531</p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        
+
+    </div>
+    
+
+    <!-- 页脚 -->
+    <div style="
+    background-color: #f1f1f1;
+    padding: 10px;
+    height: 80px;
+    text-align: center;
+    font-size: 12px;
+    
+    ">
+        <p>© 2025 Narakuu小站</p>
+        <p>Powered by Naraku</p>
+        <a> 广告位招租</a>
+    </div>
+
+
+
+
+ 
+</body>
+</html>
